@@ -4,7 +4,7 @@ import {Header} from '../header/Header';
 
 @Component({
   selector: 'dashboard',
-  templateUrl: './app/components/dashboard/dashboard.html', 
+  templateUrl: './app/components/dashboard/dashboard.html',
   directives: [ROUTER_DIRECTIVES, Header]
 })
 export class Dashboard {
