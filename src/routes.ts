@@ -3,7 +3,7 @@
 import {Component} from '@angular/core';
 import {ROUTER_DIRECTIVES, RouterConfig} from '@angular/router';
 
-import {App} from './app/containers/App';
+// import {App} from './app/containers/App';
 import {Absences} from './app/components/absences/absences';
 import {Dashboard} from './app/components/dashboard/dashboard';
 import {Landing} from './app/components/landing/landing';
