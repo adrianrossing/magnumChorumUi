@@ -3,12 +3,12 @@
 import {Component} from '@angular/core';
 import {ROUTER_DIRECTIVES, RouterConfig} from '@angular/router';
 
-// import {App} from './app/containers/App';
+import {App} from './app/containers/App';
 import {Absences} from './app/components/absences/absences';
 import {Dashboard} from './app/components/dashboard/dashboard';
 import {Landing} from './app/components/landing/landing';
 import {Login} from './app/components/login/login';
-import {BulletinBoard} from './app/components/dashboard/bulletin-board/bulletin-board';
+import {BulletinBoard} from './app/components/bulletin-board/bulletin-board';
 import {Information} from './app/components/information/information';
 import {Profile} from './app/components/profile/profile';
 
@@ -28,7 +28,7 @@ export const routes: RouterConfig = [
   // }, 
   { path: '', redirectTo: 'dashboard', terminal: true },
   { path: 'login', component: Login },
-  { path: 'dashboard', component: Dashboard,
+  { path: 'dashboard', component: App,
     children: [
       { path: '', component: Landing },
       { path: 'bulletin-board', component: BulletinBoard },
