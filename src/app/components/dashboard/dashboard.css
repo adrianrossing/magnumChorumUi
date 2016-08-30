@@ -36,9 +36,19 @@
 }
 
 @media all and ( min-width: 768px ) {
-
+  .dash-top-feature {  
+    order:1;
+  }
+  .dash-top-absences {
+    order:3;
+  }
+  .dash-bulletin-board {
+    order:2;
+  }
   .dash-grid-row-sm {
     flex-direction: row;
   }
+
+
 
 }
