@@ -1,5 +1,6 @@
 <body class="dashbaord-image" background="./app/assets/bg-body-midwinter.jpg">  
     <img class="dashboard-logo-image hidden-xs cursor-hand" routerLink="" src="./app/assets/25th-anniversary-log.png"> 
+    </body>
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" (click)="isCollapsed = !isCollapsed" data-target="#menu">
@@ -13,24 +14,24 @@
 
     <div class="collapse navbar-collapse" id="menu" [attr.visible]="isCollapsed">
       <ul class="nav navbar-nav">
-        <li><a routerLink="bulletin-board">Bulletin Board</a></li>
+        <li><a routerLink="/bulletin-board">Bulletin Board</a></li>
         <!-- <span class="sr-only">(current)</span> -->
-        <li><a routerLink="absences">Request/View Absences</a></li>
-        <li><a routerLink="information">Singer Information</a></li>
+        <li><a routerLink="/absences">Request/View Absences</a></li>
+        <li><a routerLink="/information">Singer Information</a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
 
-        <li><a routerLink="profile">FA-HEADSHOT Profile</a></li>
+        <li><a routerLink="/profile">FA-HEADSHOT Profile</a></li>
         <!--         <li (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</li>
         <li (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</li>  -->
-        <li><a routerLink="login">Log In/Log Out</a></li> 
+        <li><a routerLink="/login">Log In/Log Out</a></li> 
 
     </ul>
     </div>
     </nav>
 
-</body>
+
 
 <!-- 
 <div class="navbar navbar-inverse navbar-collapse " role="navigation">

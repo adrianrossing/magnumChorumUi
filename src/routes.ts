@@ -26,11 +26,12 @@ export const routes: RouterConfig = [
   //   path: 'app',
   //   component: App
   // }, 
-  //{ path: '', redirectTo: 'dashboard', terminal: true },
+  { path: '', redirectTo: 'dashboard', terminal: true },
+  { path: 'landing', component: Landing },
   { path: 'login', component: Login },
   { path: '', component: App,
     children: [
-      { path: '', component: Landing },
+      { path: '', component: App},
       { path: 'dashboard', component: Dashboard },
       { path: 'bulletin-board', component: BulletinBoard },
       { path: 'absences', component: Absences },
