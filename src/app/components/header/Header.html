@@ -1,11 +1,47 @@
-<div class="collapse navbar-collapse" role="navigation">
+<body class="dashbaord-image" background="./app/assets/bg-body-midwinter.jpg">  
+    <img class="dashboard-logo-image hidden-xs cursor-hand" routerLink="" src="./app/assets/25th-anniversary-log.png"> 
+    </body>
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" (click)="isCollapsed = !isCollapsed" data-target="#menu">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" routerLink="">Magnum Chorum</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="menu" [attr.visible]="isCollapsed">
+      <ul class="nav navbar-nav">
+        <li><a routerLink="/bulletin-board">Bulletin Board</a></li>
+        <!-- <span class="sr-only">(current)</span> -->
+        <li><a routerLink="/absences">Request/View Absences</a></li>
+        <li><a routerLink="/information">Singer Information</a></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+
+        <li><a routerLink="/profile">FA-HEADSHOT Profile</a></li>
+        <!--         <li (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</li>
+        <li (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</li>  -->
+        <li><a routerLink="/login">Log In/Log Out</a></li> 
+
+    </ul>
+    </div>
+    </nav>
+
+
+
+<!-- 
+<div class="navbar navbar-inverse navbar-collapse " role="navigation">
     <div class="navbar-header">
         <a class="navbar-brand" href="#">Magnum Chorum</a>
     </div>
 
     <ul class="nav navbar-nav">
         <li><a routerLink="/dashboard/bulletin-board">Bulletin Board</a></li>
-        <!-- <span class="sr-only">(current)</span> -->
+
         <li><a routerLink="/dashboard/absences">Request/View Absences</a></li>
         <li><a routerLink="/dashboard/information">Singer Information</a></li>
     </ul>
@@ -13,13 +49,17 @@
     <ul class="nav navbar-nav navbar-right">
 
         <li><a routerLink="/dashboard/profile">FA-HEADSHOT Profile</a></li>
-    <!--         <li (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</li>
-            <li (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</li>  -->
+         <li (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</li>
+            <li (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</li> 
         <li><a routerLink="/login">Log In/Log Out</a></li> 
 
     </ul>
 </div>
-	<!--
+-->
+
+
+
+	<!--   
  <ul class="dropdown-menu">
         <li role="separator" class="divider"></li>
         <li (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</li>

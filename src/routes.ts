@@ -8,7 +8,7 @@ import {Absences} from './app/components/absences/absences';
 import {Dashboard} from './app/components/dashboard/dashboard';
 import {Landing} from './app/components/landing/landing';
 import {Login} from './app/components/login/login';
-import {BulletinBoard} from './app/components/dashboard/bulletin-board/bulletin-board';
+import {BulletinBoard} from './app/components/bulletin-board/bulletin-board';
 import {Information} from './app/components/information/information';
 import {Profile} from './app/components/profile/profile';
 
@@ -27,10 +27,12 @@ export const routes: RouterConfig = [
   //   component: App
   // }, 
   { path: '', redirectTo: 'dashboard', terminal: true },
+  { path: 'landing', component: Landing },
   { path: 'login', component: Login },
-  { path: 'dashboard', component: Dashboard,
+  { path: '', component: App,
     children: [
-      { path: '', component: Landing },
+      { path: '', component: App},
+      { path: 'dashboard', component: Dashboard },
       { path: 'bulletin-board', component: BulletinBoard },
       { path: 'absences', component: Absences },
       { path: 'information', component: Information },

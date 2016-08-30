@@ -1,0 +1,44 @@
+.dsah-grid {
+	
+}
+
+.dash-grid-row {
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.dash-box-margins {
+	margin-left: 5px;
+	margin-right:5px;
+	margin-bottom:10px;
+}
+
+.dash-top-feature {
+  flex: 1;
+  padding: 12px;
+  border: solid 1px #e7e7e7;
+  border-radius: 5px;
+  /*margin: 10px;*/
+}
+
+.dash-top-absences {
+  flex: 1;
+  padding: 12px;
+  border: solid 1px #e7e7e7;
+  border-radius: 5px;
+}
+.dash-bulletin-board {
+  flex: 2;
+  padding: 12px;
+  border: solid 1px #e7e7e7;
+  border-radius: 5px;
+}
+
+@media all and ( min-width: 768px ) {
+
+  .dash-grid-row-sm {
+    flex-direction: row;
+  }
+
+}
