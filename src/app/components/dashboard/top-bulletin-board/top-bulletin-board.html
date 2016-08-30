@@ -1,16 +1,45 @@
-<h3>Magnum Chorum Bulletin Board</h3>
+<h3 class="cursor-hand" routerLink="/bulletin-board">Magnum Chorum Bulletin Board</h3>
 
 <body>Use this space to share things with the choir!</body>
 
 <div class="bubble" *ngFor="let item of boardItems">
 
-	<div class="bubble-title"><strong>{{item.author}}</strong> Today 12:00pm</div>
+	<div class="bubble-title">
+		<div class="bubble-title-author">{{item.author}}</div> 
+		<div class="bubble-title-date">Today 12:00pm</div>
+		<div class="bubble-likes">
+			{{item.votes}}
+			<span class="glyphicon glyphicon-plus cursor-hand" aria-hidden="true"></span>
+		</div>
+	</div>
+
 	<p class="bubble-text">{{item.comment}}</p>
-	<div class="bubble-likes"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>{{item.plusses}}</div>
+
+	<!-- comments here -->
+	<div class="bubble-comments" *ngFor="let comment of item.comments">
+		<div class="bubble-text">
+		<strong>{{comment.author}}:</strong> {{comment.comment}}
+		</div>
+	</div>
+	<div class="bubble-comments">
+		<div class="bubble-click-to-comment cursor-hand">
+		<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+		Add comment
+		</div>
+  	</div>
+
+
+
 </div>
 
-<br><br>
+
+
+
+
+
+
+<!-- <br><br>
 <form action="demo_form.asp">
   Share your thoughts: <input type="text" name="fname"><br>
   <input type="submit" value="Submit">
-</form>
+</form> -->
