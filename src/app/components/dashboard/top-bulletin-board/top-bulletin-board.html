@@ -7,39 +7,25 @@
 	<div class="bubble-title">
 		<div class="bubble-title-author">{{item.author}}</div> 
 		<div class="bubble-title-date">Today 12:00pm</div>
-		<div class="bubble-likes">
+		<div class="bubble-likes" (click)="item.votes = item.votes + 1">
 			{{item.votes}}
 			<span class="glyphicon glyphicon-plus cursor-hand" aria-hidden="true"></span>
 		</div>
 	</div>
-
+	
 	<p class="bubble-text">{{item.comment}}</p>
 
-	<!-- comments here -->
 	<div class="bubble-comments" *ngFor="let comment of item.comments">
 		<div class="bubble-text">
 		<strong>{{comment.author}}:</strong> {{comment.comment}}
 		</div>
 	</div>
-	<div class="bubble-comments">
-		<div class="bubble-click-to-comment cursor-hand">
-		<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-		Add comment
+
+	<!-- TODO: This is really clunky and should be reworked at some point. -->
+	<div class="bubble-comments bubble-new-comment cursor-hand" (click)="item.commenting = true">
+		<div *ngIf="item.commenting" class="bubble-comment-on-comment" contenteditable="true" [textContent]="item.newComment" (input)="item.newComment=$event.target.textContent"></div>
+		<div *ngIf="!item.commenting" class="bubble-click-to-comment">
+			<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>Add comment
 		</div>
   	</div>
-
-
-
 </div>
-
-
-
-
-
-
-
-<!-- <br><br>
-<form action="demo_form.asp">
-  Share your thoughts: <input type="text" name="fname"><br>
-  <input type="submit" value="Submit">
-</form> -->

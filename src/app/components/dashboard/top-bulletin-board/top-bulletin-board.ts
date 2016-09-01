@@ -12,6 +12,7 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
 
 export class TopBulletinBoard {
   boardItems: BulletinBoardPost[];
+  inputText = '';
 
   constructor(private bulletinBoardService: BulletinBoardService) {
   	this.boardItems = this.bulletinBoardService.getBoardPosts()
