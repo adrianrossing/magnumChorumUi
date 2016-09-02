@@ -18,8 +18,13 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loaders: ExtractTextPlugin.extract('style', 'css?minimize!', 'postcss')
+        loaders: ExtractTextPlugin.extract({ fallbackLoader: 'style', loader: 'css?minimize!sass!postcss' })       
       },
+      // ExtractTextPlugin.extract('style', 'css?minimize!', 'postcss')
+      // ExtractTextPlugin.extract('style', 'css?minimize!sass!postcss')
+      // ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader' })
+      // loader: ExtractTextPlugin.extract({ notExtractLoader: 'style-loader', loader: 'css-loader!postcss-loader!sass-loader' })
+
       {
         test: /\.ts$/,
         exclude: /node_modules/,

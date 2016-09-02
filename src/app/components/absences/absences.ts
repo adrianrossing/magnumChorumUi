@@ -12,9 +12,10 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
 export class Absences {
   absences: Absence[];
   inputText = '';
-
+  addingNewAbsence: boolean;
   constructor(private absenceService: AbsenceService) {
   	//TODO: Get Logged In User!!!!
+    addingNewAbsence = false;
   	this.absences = this.absenceService.getAllAbsences();//.getAbsencesByUserID(10)
   }
   
