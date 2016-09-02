@@ -30,7 +30,7 @@
 }
 .dash-bulletin-board {
   flex: 2;
-  padding: 12px;
+  /*padding: 12px;*/
   border: solid 1px #e7e7e7;
   border-radius: 5px;
 }
