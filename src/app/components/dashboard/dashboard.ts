@@ -1,14 +1,14 @@
 import {Component} from '@angular/core';
 // import {ROUTER_DIRECTIVES} from '@angular/router';
 import {TopAbsences} from '../dashboard/top-absences/top-absences';
-import {TopBulletinBoard} from '../dashboard/top-bulletin-board/top-bulletin-board';
+import {BulletinBoard} from '../bulletin-board/bulletin-board';
 import {TopFeature} from '../dashboard/top-feature/top-feature';
 
 @Component({
   selector: 'dashboard',
   templateUrl: './app/components/dashboard/dashboard.html',
   styleUrls: ['app/components/dashboard/dashboard.css'],
-  directives: [TopFeature, TopBulletinBoard, TopAbsences]
+  directives: [TopFeature, BulletinBoard, TopAbsences]
 })
 export class Dashboard {
 }
