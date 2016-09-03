@@ -18,8 +18,17 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loaders: ExtractTextPlugin.extract({ fallbackLoader: 'style', loader: 'css?minimize!sass!postcss' })       
+        loaders: [
+          'style',
+          'css',
+          'postcss'
+        ]
       },
+      // ,
+      // {
+      //   test: /\.css$/,
+      //   loader: ExtractTextPlugin.extract( {fallbackLoader:'style', loader: 'css?minimize!'})// ['to-string-loader', 'css-loader']//loaders: ExtractTextPlugin.extract({ fallbackLoader: 'style', loader: 'css?minimize!sass!postcss' })       
+      // },
       // ExtractTextPlugin.extract('style', 'css?minimize!', 'postcss')
       // ExtractTextPlugin.extract('style', 'css?minimize!sass!postcss')
       // ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader' })
@@ -33,7 +42,7 @@ module.exports = {
         ]
       },
       {
-        test: /.html$/,
+        test: /\.html$/,
         loaders: [
           'html'
         ]

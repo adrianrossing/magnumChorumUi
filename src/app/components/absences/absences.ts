@@ -5,8 +5,8 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
 
 @Component({
   selector: 'absences',
-  templateUrl: './app/components/absences/absences.html',
-  styleUrls: ['app/components/absences/absences.css'], 
+  template: require('./app/components/absences/absences.html'),
+  styles: [require('app/components/absences/absences.css')], 
   providers: [ROUTER_DIRECTIVES, AbsenceService]
 })
 export class Absences {
@@ -15,7 +15,7 @@ export class Absences {
   addingNewAbsence: boolean;
   constructor(private absenceService: AbsenceService) {
   	//TODO: Get Logged In User!!!!
-    addingNewAbsence = false;
+    this.addingNewAbsence = false;
   	this.absences = this.absenceService.getAllAbsences();//.getAbsencesByUserID(10)
   }
   

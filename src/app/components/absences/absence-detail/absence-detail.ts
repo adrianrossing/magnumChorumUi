@@ -5,17 +5,16 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
 
 @Component({
   selector: 'absences',
-  templateUrl: './app/components/absences/absence-detail/absence-detail.html',
-  styleUrls: ['app/components/absences/absence.css'], 
+  template: require('./app/components/absences/absence-detail/absence-detail.html'),
+  styles: [require('app/components/absences/absence.css')],
   providers: [ROUTER_DIRECTIVES, AbsenceService]
 })
-export class Absences {
-  absences: Absence[];
-  inputText = '';
+export class AbsenceDetail {
+  // absences: Absence[];
+  // inputText = '';
 
   constructor(private absenceService: AbsenceService) {
-  	//TODO: Get Logged In User!!!!
-  	this.absences = this.absenceService.getAbsencesByID(1);//.getAbsencesByUserID(10)
+  	// TODO: Get Logged In User!!!!
+  	// this.absences = this.absenceService.getAbsencesByID(1);//.getAbsencesByUserID(10)
   }
-  
 }
