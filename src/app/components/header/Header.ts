@@ -8,7 +8,7 @@ import { CollapseDirective } from 'ng2-bootstrap';
 @Component({
   selector: 'Header',
   template: require('./Header.html'),
-  styles: [require('./header.css')],
+  styles: [require('./header.css').toString()],
   directives: [ROUTER_DIRECTIVES, CollapseDirective]
 })
 export class Header {
