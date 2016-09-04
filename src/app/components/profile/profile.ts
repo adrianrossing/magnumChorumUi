@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'profile',
-  templateUrl: './app/components/profile/profile.html'
+  template: require('./profile.html')
 })
 export class Profile {
 }

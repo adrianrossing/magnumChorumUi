@@ -6,8 +6,8 @@ import {TopFeature} from '../dashboard/top-feature/top-feature';
 
 @Component({
   selector: 'dashboard',
-  templateUrl: './app/components/dashboard/dashboard.html',
-  styleUrls: ['app/components/dashboard/dashboard.css'],
+  template: require('./dashboard.html'),
+  styles: [require('./dashboard.css').toString()],
   directives: [TopFeature, BulletinBoard, TopAbsences]
 })
 export class Dashboard {
