@@ -41,7 +41,7 @@ module.exports = {
       {
         test: /\.html$/,
         loaders: [
-          'html'
+          'html?-minimize'
         ]
       } 
 //       {
