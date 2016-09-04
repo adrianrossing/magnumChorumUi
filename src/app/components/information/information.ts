@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'information',
-  templateUrl: './app/components/information/information.html'
+  template: require('./information.html')
 })
 export class Information {
 }

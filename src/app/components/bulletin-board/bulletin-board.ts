@@ -5,8 +5,8 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
 
 @Component({
   selector: 'bulletin-board',
-  template: require('./app/components/bulletin-board/bulletin-board.html'), 
-  styles: [require('app/components/bulletin-board/bulletin-board.css')], 
+  template: require('./bulletin-board.html'), 
+  styles: [require('./bulletin-board.css')], 
   providers: [ROUTER_DIRECTIVES, BulletinBoardService]
 })
 
