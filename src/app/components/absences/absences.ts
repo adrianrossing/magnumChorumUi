@@ -7,11 +7,11 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
   selector: 'absences',
   template: require('./absences.html'),
   styles: [require('./absences.css').toString()], 
-  providers: [ROUTER_DIRECTIVES, AbsenceService]
+  directives: [ROUTER_DIRECTIVES],
+  providers: [AbsenceService]
 })
 export class Absences {
   absences: Absence[];
-  inputText = '';
   addingNewAbsence: boolean;
   constructor(private absenceService: AbsenceService) {
   	//TODO: Get Logged In User!!!!

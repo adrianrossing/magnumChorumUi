@@ -7,7 +7,8 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
   selector: 'absences',
   template: require('./absence-detail.html'),
   // styles: [require('./absence.css').toString()],
-  providers: [ROUTER_DIRECTIVES, AbsenceService]
+  directives: [ROUTER_DIRECTIVES],
+  providers: [AbsenceService]
 })
 export class AbsenceDetail {
   // absences: Absence[];

@@ -7,7 +7,8 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
   selector: 'bulletin-board',
   template: require('./bulletin-board.html'), 
   styles: [require('./bulletin-board.css').toString()], 
-  providers: [ROUTER_DIRECTIVES, BulletinBoardService]
+  directives: [ROUTER_DIRECTIVES],
+  providers: [BulletinBoardService]
 })
 
 export class BulletinBoard {
