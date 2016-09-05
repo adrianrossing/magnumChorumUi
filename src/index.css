@@ -6,6 +6,10 @@
 	cursor: pointer;
 }
 
+.inline-block {
+    display: inline-block;
+}
+
 .dashbaord-image {
     /*background: transparent url(app/assets/bg-body-midwinter.jpg) center top no-repeat;*/
     background-attachment: fixed;

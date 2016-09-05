@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {BulletinBoardService} from '../../models/bulletin-board/bulletin-board.service';
 import {BulletinBoardPost} from '../../models/DTOs/bulletin-board-post';
 import {ROUTER_DIRECTIVES} from '@angular/router';
@@ -12,6 +12,8 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
 })
 
 export class BulletinBoard {
+   @Input() testText: any;
+   @Input() dashboardDisplay: boolean = false;
   boardItems: BulletinBoardPost[];
   inputText = '';
 

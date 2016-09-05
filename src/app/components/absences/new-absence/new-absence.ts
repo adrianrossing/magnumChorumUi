@@ -4,13 +4,13 @@ import {Absence} from '../../../models/DTOs/absence';
 import {ROUTER_DIRECTIVES} from '@angular/router';
 
 @Component({
-  selector: 'absence-detail',
-  template: require('./absence-detail.html'),
+  selector: 'new-absence',
+  template: require('./new-absence.html'),
   // styles: [require('./absence.css').toString()],
   directives: [ROUTER_DIRECTIVES],
   providers: [AbsenceService]
 })
-export class AbsenceDetail {
+export class NewAbsence {
   @Input() id: number;
   // absences: Absence[];
   // inputText = '';
