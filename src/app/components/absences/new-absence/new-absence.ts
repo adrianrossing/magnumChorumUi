@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import {AbsenceService} from '../../../models/absence/absence.service';
 import {Absence} from '../../../models/DTOs/absence';
 import {ROUTER_DIRECTIVES} from '@angular/router';
@@ -11,12 +11,30 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
   providers: [AbsenceService]
 })
 export class NewAbsence {
-  @Input() id: number;
-  // absences: Absence[];
-  // inputText = '';
+  absenceTypes: any;
+  selectedAbsence: any;
+
+      name: string;
 
   constructor(private absenceService: AbsenceService) {
-  	// TODO: Get Logged In User!!!!
+  	this.absenceTypes = absenceService.getAbsenceTypes();
+
+    // TODO: Get Logged In User!!!!
   	// this.absences = this.absenceService.getAbsencesByID(1);//.getAbsencesByUserID(10)
   }
+
+  onSubmit() {
+     this.submitted = true;
+   }
+
+  onSelect(productId) { 
+      this.selectedAbsence = null;
+      for (var i = 0; i < this.absenceTypes.length; i++)
+      {
+        if (this.absenceTypes[i].id == productId) {
+          this.selectedAbsence = this.absenceTypes[i];
+        }
+      }
+  
+
 }

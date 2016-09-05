@@ -82,6 +82,12 @@ export class AbsenceService {
     return absences as Absence[];
   }
 
+
+  getAbsenceTypes() : any {
+    let types = [{id: 1, name: 'Absent - I will be completely missing the rehearsal or event.'}, {id:2, name: 'Late  - I will be arriving after the start time.'}];
+    return types;
+  }
+
 }
 
 
