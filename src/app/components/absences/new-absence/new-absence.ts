@@ -6,15 +6,14 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
 @Component({
   selector: 'new-absence',
   template: require('./new-absence.html'),
-  // styles: [require('./absence.css').toString()],
+  styles: [require('./new-absence.css').toString()], 
   directives: [ROUTER_DIRECTIVES],
   providers: [AbsenceService]
 })
 export class NewAbsence {
   absenceTypes: any;
   selectedAbsence: any;
-
-      name: string;
+  submitted: boolean = false;
 
   constructor(private absenceService: AbsenceService) {
   	this.absenceTypes = absenceService.getAbsenceTypes();
@@ -23,7 +22,8 @@ export class NewAbsence {
   	// this.absences = this.absenceService.getAbsencesByID(1);//.getAbsencesByUserID(10)
   }
 
-  onSubmit() {
+  submitRequest() {
+     //call service. when promise returns, route to /absences.
      this.submitted = true;
    }
 
@@ -35,6 +35,6 @@ export class NewAbsence {
           this.selectedAbsence = this.absenceTypes[i];
         }
       }
-  
+  }
 
 }

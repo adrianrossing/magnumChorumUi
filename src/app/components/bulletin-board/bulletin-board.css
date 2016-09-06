@@ -45,7 +45,19 @@
 	font-size: smaller;
 	display: inline;
 }
+.bubble-new-comment {
+	width: 85%;
+	font-size: small;
+	padding: 5px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	overflow:hidden;
+	margin-bottom: 3px;
+	float:right;
 
+	background: #384764;
+}
 .bubble-comments {
 	width: 85%;
 	font-size: small;
@@ -57,9 +69,6 @@
 	margin-bottom: 3px;
 	float:right;
 	border:1px solid white;
-}
-.bubble-new-comment{
-	background: #384764;
 }
 
 .bubble-comment-on-comment {

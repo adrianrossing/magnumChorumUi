@@ -13,7 +13,7 @@ import {Login} from './app/components/login/login';
 import {BulletinBoard} from './app/components/bulletin-board/bulletin-board';
 import {Information} from './app/components/information/information';
 import {Profile} from './app/components/profile/profile';
-
+import {Admin} from './app/components/admin/admin';
 
 @Component({
   selector: 'root',
@@ -40,7 +40,8 @@ export const routes: RouterConfig = [
       { path: 'absences/new', component: NewAbsence },
       { path: 'absences/:id', component: AbsenceDetail }, //not using now.. just doing in the absences partial. 
       { path: 'information', component: Information },
-      { path: 'profile', component: Profile }
+      { path: 'profile', component: Profile },
+      { path: 'admin', component: Admin }
     ]
   }
 ];

@@ -6,12 +6,13 @@
 		<div class="bubble" *ngIf="!dashboardDisplay">
 			<div class="bubble-title">
 				<div class="bubble-title-author">Logged In User</div> 
-				
 			</div>	
-			
-			
-			<p class="bubble-text">pekjkfj;alksdj;lkfjasd</p>
-
+		
+			<form>
+		      <div class="bubble-new-comment ">
+		        <input type="text" class="form-control" id="name" placeholder="Add Comment" required>
+		      </div>
+			</form>
 		</div>
 
 	<div class="bubble" *ngFor="let item of boardItems">
@@ -32,14 +33,18 @@
 			<strong>{{comment.author}}:</strong> {{comment.comment}}
 			</div>
 		</div>
-
+		<form>
+	      <div class="bubble-new-comment ">
+	        <input type="text" class="form-control" id="name" placeholder="Add Comment" required>
+	      </div>
+		</form>
 		<!-- TODO: This is really clunky and should be reworked at some point. -->
-		<div class="bubble-comments bubble-new-comment cursor-hand" (click)="item.commenting = true">
+		<!-- <div class="bubble-comments bubble-new-comment cursor-hand" (click)="item.commenting = true">
 			<div *ngIf="item.commenting" class="bubble-comment-on-comment" contenteditable="true" [textContent]="item.newComment" (input)="item.newComment=$event.target.textContent"></div>
 			<div *ngIf="!item.commenting" class="bubble-click-to-comment">
 				<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>Add comment
 			</div>
-	  	</div>
+	  	</div> -->
 	</div>
 
 </div>

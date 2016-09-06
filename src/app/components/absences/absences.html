@@ -9,128 +9,56 @@
   <absence-detail [id]="selectedID"></absence-detail>
 
 
+<div>
   <div class="table-row header">
-    <div class="column index">#</div>
-    <div class="wrapper attributes">
-      <div class="wrapper title-comment-module-reporter">
-        <div class="wrapper title-comment">
-          <div class="column title">Event</div>
-          <div class="column comment">Comment</div>
-        </div>
-        <div class="wrapper module-reporter">
-          <div class="column module">Requested By</div>
-          <div class="column reporter">Reviewed By</div>
-        </div>
-      </div>
-      <div class="wrapper status-owner-severity">
-        <div class="wrapper status-owner">
-          <div class="column status">Status</div>
-          <div class="column owner">Action</div>
-        </div>
-      </div>
+    <div class="flex-name-date">
+      <div class="column wrapper flex-three">Event Title</div>
+      <div class="column wrapper flex-two">Event Date</div>
     </div>
-    <div class="wrapper icons">
-      <div title="Add comment" class="column add-comment">
-        <span class="glyphicon glyphicon-comment"></span>
-      </div>
+    
+    <div class="flex-comment">
+      <div class="column wrapper flex-four">Comment</div>
     </div>
-    <div class="wrapper dates">
-      <div class="column date">Event Date</div>
+
+    <div class="flex-names">
+      <div class="column wrapper flex-two">Requested By</div>
+      <div class="column wrapper flex-two">Reviewed By</div>
+    </div>
+
+    <div class="flex-type-action">
+      <div class="column wrapper flex-one">Type</div>
+      <div class="column wrapper flex-one">Status</div>
     </div>
   </div>
 
   <div class="table-row" *ngFor="let absence of absences">
-    <div class="column index">1</div>
-    <div class="wrapper attributes">
-      <div class="wrapper title-comment-module-reporter">
-        <div class="wrapper title-comment">
-          <div class="column title">{{absence.eventName}}</div>
-          <div class="column comment">{{absence.comments[0].comment}}</div>
-        <div class="wrapper module-reporter">
-          <div class="column module">{{absence.userName}}</div>
-          <div class="column reporter">......</div>
-        </div>
+    <div class="flex-name-date">
+      <div class="column wrapper flex-three">{{absence.eventName}}</div>
+      <div class="column wrapper flex-two">{{absence.enteredDate | date}}</div>
+    </div>
+    
+    <div class="flex-comment">
+      <div class="column wrapper flex-four">{{absence.comments[0].comment}}</div>
+    </div>
+
+    <div class="flex-names">
+      <div class="column wrapper flex-two">{{absence.userName}}</div>
+      <div class="column wrapper flex-two">......</div>
+    </div>
+
+    <div class="flex-type-action">
+      <div class="column wrapper flex-one">{{absence.type}}</div>
+      <div class="flex-one">
+        <div class="label"
+        [class.label-info]="absence.action == 'Requested'"
+        [class.label-success]="absence.action == 'Approved'"
+        [class.label-danger]="absence.action == 'Deneyed'">{{absence.action}}</div>
       </div>
-      <div class="wrapper status-owner-severity">
-        <div class="wrapper status-owner">
-          <div class="column status"><span class="label label-primary">{{absence.action}}</span></div>
-          <div class="column owner">{{absence.type}}</div>
-        </div>
-      </div>
     </div>
-    <div class="wrapper icons">
-      <div class="column add-comment"><span class="glyphicon glyphicon-comment"> </span></div>
-    </div>
-    <div class="wrapper dates">
-      <div class="column date">{{absence.enteredDate}}</div>
-    </div>
+
   </div>
-
-
-
-
-
-
-
-<!-- 
-  <div class="table-row header">
-    <div class="column index">#</div>
-    <div class="wrapper attributes">
-      <div class="wrapper title-comment-module-reporter">
-        <div class="wrapper title-comment">
-          <div class="column title">Event</div>
-          <div class="column comment">Comment</div>
-        </div>
-        <div class="wrapper module-reporter">
-          <div class="column module">Requested By</div>
-          <div class="column reporter">Reviewed By</div>
-        </div>
-      </div>
-      <div class="wrapper status-owner-severity">
-        <div class="wrapper status-owner">
-          <div class="column status">Status</div>
-          <div class="column owner">Action</div>
-        </div>
-      </div>
-    </div>
-    <div class="wrapper icons">
-      <div title="Add comment" class="column add-comment">
-        <span class="glyphicon glyphicon-comment"></span>
-      </div>
-    </div>
-    <div class="wrapper dates">
-      <div class="column date">Event Date</div>
-    </div>
-  </div>
-
-  <div class="table-row" *ngFor="let absence of absences">
-    <div class="column index">1</div>
-    <div class="wrapper attributes">
-      <div class="wrapper title-comment-module-reporter">
-        <div class="wrapper title-comment">
-          <div class="column title">{{absence.eventName}}</div>
-          <div class="column comment">{{absence.comments[0].comment}}</div>
-        <div class="wrapper module-reporter">
-          <div class="column module">{{absence.userName}}</div>
-          <div class="column reporter">......</div>
-        </div>
-      </div>
-      <div class="wrapper status-owner-severity">
-        <div class="wrapper status-owner">
-          <div class="column status"><span class="label label-primary">{{absence.action}}</span></div>
-          <div class="column owner">{{absence.type}}</div>
-        </div>
-      </div>
-    </div>
-    <div class="wrapper icons">
-      <div class="column add-comment"><span class="glyphicon glyphicon-comment"> </span></div>
-    </div>
-    <div class="wrapper dates">
-      <div class="column date">{{absence.enteredDate}}</div>
-    </div>
-  </div> -->
+<div>
 
 </div>
-
 </div>
 
