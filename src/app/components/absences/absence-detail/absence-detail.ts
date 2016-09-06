@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {AbsenceService} from '../../../models/absence/absence.service';
 import {Absence} from '../../../models/DTOs/absence';
 import {ROUTER_DIRECTIVES} from '@angular/router';
 
 @Component({
-  selector: 'absences',
+  selector: 'absence-detail',
   template: require('./absence-detail.html'),
   // styles: [require('./absence.css').toString()],
-  providers: [ROUTER_DIRECTIVES, AbsenceService]
+  directives: [ROUTER_DIRECTIVES],
+  providers: [AbsenceService]
 })
 export class AbsenceDetail {
+  @Input() id: number;
   // absences: Absence[];
   // inputText = '';
 

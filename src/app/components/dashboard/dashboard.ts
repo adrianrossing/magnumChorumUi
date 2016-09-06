@@ -11,4 +11,5 @@ import {TopFeature} from '../dashboard/top-feature/top-feature';
   directives: [TopFeature, BulletinBoard, TopAbsences]
 })
 export class Dashboard {
+	dashboardDisplay: boolean = true;
 }

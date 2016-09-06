@@ -6,6 +6,10 @@
  * Basic styles, good for a large display. Everything fits in
  * one row, no wrapping. All text based cells grow equally.
  */
+
+
+
+
 .table-row {
   display: flex;
   display: -webkit-flex;
@@ -14,14 +18,20 @@
   flex-wrap: no-wrap;
   -webkit-flex-wrap: no-wrap;
   width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  /*flex-direction: column;*/
+  width: 100%;
 }
 .wrapper {
   display: flex;
   display: -webkit-flex;
   flex-direction: row;
   -webkit-flex-direction: row;
+  margin-left: 5px;
+  margin-right:5px;
+  margin-bottom:10px;
+  padding: 5px;
 }
 .column {
   flex-grow: 0;
@@ -30,160 +40,75 @@
   -webkit-flex-shrink: 0;
   vertical-align: top;
 }
-.index {
-  width: 25px;
+
+.flex-four {
+  flex:4;
 }
-.title {
-  width: 220px;
+.flex-three {
+  flex:3;
 }
-.module {
-  width: 110px;
+.flex-two {
+  flex:2;
 }
-.reporter {
-  width: 95px;
+.flex-one {
+  flex:1;
 }
-.status {
-  width: 95px;
+
+.flex-name-date {
+
+  display:inline-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  flex:5;
 }
-.owner {
-  width: 75px;
+.flex-comment {
+
+  display:inline-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  flex:4;
 }
-.severity {
-  width: 80px;
+.flex-names {
+  display:inline-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  flex:4;
 }
-.watch,
-.add-comment {
-  width: 18px;
+.flex-type-action {
+  
+  display:inline-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  flex:2;
 }
-.date {
-  width: 110px;
-}
-.index {
-  text-align: center;
-}
-.title {
-  font-weight: bold;
-  color: #337AB5;
-}
-.comment {
-  width: 120px;
-}
-.title,
-.comment {
-  flex-grow: 1;
-  -webkit-flex-grow: 1;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  padding-right: 4px;
-}
-.date {
-  width: 110px;
-  text-align: right;
-  padding-right: 4px;
-}
-/* growable wrappers */
-.title-comment,
-.title-comment-module-reporter,
-.attributes {
-  flex-grow: 1;
-  -webkit-flex-grow: 1;
-}
-/*
- * Media queries: optimize for different screen widths.
- */
-/*
- * Media breaks.
- */
-@media all and (max-width: 1236px) {
-  .title-comment {
+
+
+
+@media all and (max-width: 1000px) {
+
+  .flex-name-date {
     flex-direction: column;
     -webkit-flex-direction: column;
-    width: 220px;
+    flex:3;
   }
-  .title-comment div {
-    flex-grow: 0;
-    -webkit-flex-grow: 0;
-  }
-  .title-comment > div {
-    width: 100%;
-  }
-  .module-reporter,
-  .status-owner {
+  .flex-comment {
     flex-direction: column;
     -webkit-flex-direction: column;
+    flex:4;
   }
-  .module-reporter div,
-  .status-owner div {
-    flex-grow: 0;
-    -webkit-flex-grow: 0;
+  .flex-names {
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    flex:2;
   }
+  .flex-type-action {
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    flex:1;
+  }
+
 }
-@media all and (max-width: 956px) {
-  .module-reporter {
-    flex-direction: row;
-    -webkit-flex-direction: row;
-  }
-  .title-comment-module-reporter {
-    flex-direction: column;
-    -webkit-flex-direction: column;
-    width: 220px;
-  }
-  .title-comment-module-reporter div {
-    flex-grow: 0;
-    -webkit-flex-grow: 0;
-  }
-  .title-comment-module-reporter > div {
-    width: 100%;
-  }
-  .status-owner-severity {
-    flex-direction: column;
-    -webkit-flex-direction: column;
-  }
-  .status-owner-severity div {
-    flex-grow: 0;
-    -webkit-flex-grow: 0;
-  }
-  .icons {
-    flex-direction: column;
-    -webkit-flex-direction: column;
-  }
-  .icons div {
-    flex-grow: 0;
-    -webkit-flex-grow: 0;
-  }
-  .dates {
-    flex-direction: column;
-    -webkit-flex-direction: column;
-  }
-  .dates div {
-    flex-grow: 0;
-    -webkit-flex-grow: 0;
-  }
-}
-@media all and (max-width: 528px) {
-  .table-row {
-    padding-left: 4px;
-    padding-right: 4px;
-  }
-  .attributes {
-    flex-direction: column;
-    -webkit-flex-direction: column;
-    width: 220px;
-  }
-  .attributes div {
-    flex-grow: 0;
-    -webkit-flex-grow: 0;
-  }
-  .attributes > div {
-    width: 100%;
-  }
-  .module-reporter,
-  .status-owner {
-    flex-direction: row;
-    -webkit-flex-direction: row;
-  }
-}
+
 /*
  * General good-look styles
  */
