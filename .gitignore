@@ -7,3 +7,4 @@ jspm_packages/
 bower_components/
 **/.DS_Store
 **/npm-debug.log
+**/README_private.md
