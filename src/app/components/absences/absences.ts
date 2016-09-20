@@ -15,11 +15,13 @@ export class Absences {
   absences: Absence[];
   addingNewAbsence: boolean;
   newAbsence: Absence;
+  test: any;
 
   constructor(private absenceService: AbsenceService) {
   	//TODO: Get Logged In User!!!!
     this.addingNewAbsence = false;
   	this.absences = this.absenceService.getAllAbsences();//.getAbsencesByUserID(10)
+    this.test = this.absenceService.getTest();
   }
   
 }
