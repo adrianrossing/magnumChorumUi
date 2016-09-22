@@ -8,3 +8,4 @@ Magnum Chorum UI - internal
 	npm run start
 3. Test using the following command
 	npm run test
+

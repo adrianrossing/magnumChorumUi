@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 
 @Injectable()
-export class AbsenceService {
+export class AttendanceService {
   // private boardUrl = 'app/bulletin-board';  // URL to web api
   public data;
   constructor(private http: Http) { 
@@ -23,10 +23,10 @@ export class AbsenceService {
     return Observable.throw(errMsg);
   }
 
-  getTest() : any {
+  getAttendance() : any {
     const HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
-    this.http.get('api/users/getUsers.php')
-    //this.http.get('http://intranet.magnumchorum.org/api/users/getUsers.php', HEADER)
+    this.http.get('api/users/getUsersForAttendance.php')
+    //this.http.get('http://intranet.magnumchorum.org/api/users/getUsersForAttendance.php')
     //        .subscribe(res => this.data = res.json());
     // return this.data;
             // .map(this.extractData)
@@ -61,7 +61,7 @@ export class AbsenceService {
           comment: 'Oops. There you go!', 
           userID: 1, commentDate: new Date('2016/09/03')}]},
       {id: 1, userID:10, userName: 'Adrian Rossing', eventID: 199, eventName: 'Concert - 10/27/2016', 
-        actionID: 3, action: 'Denied', enteredDate: new Date('2016/09/02'), typeID: 1, type: 'Absent', comments: [{
+        actionID: 3, action: 'Deneyed', enteredDate: new Date('2016/09/02'), typeID: 1, type: 'Absent', comments: [{
           comment: 'The fall concert won\'t work for me. JUST KIDDING! THIS IS A TEST...', 
           userID: 10, commentDate: new Date('2016/09/02')}]},
       {id: 2, userID:20, userName: 'Andrew Parr', eventID: 188, eventName: 'Church Service - 10/15/2016', 
@@ -93,7 +93,7 @@ export class AbsenceService {
           comment: 'Oops. There you go!', 
           userID: 1, commentDate: new Date('2016/09/03')}]},
       {id: 1, userID:10, userName: 'Adrian Rossing', eventID: 199, eventName: 'Concert - 10/27/2016', 
-        actionID: 3, action: 'Denied', enteredDate: new Date('2016/09/02'), typeID: 1, type: 'Absent', comments: [{
+        actionID: 3, action: 'Deneyed', enteredDate: new Date('2016/09/02'), typeID: 1, type: 'Absent', comments: [{
           comment: 'The fall concert won\'t work for me. JUST KIDDING! THIS IS A TEST...', 
           userID: 10, commentDate: new Date('2016/09/02')}]}
     ];
@@ -113,7 +113,7 @@ export class AbsenceService {
           comment: 'Oops. There you go!', 
           userID: 1, commentDate: new Date('2016/09/03')}]},
       {id: 1, userID:10, userName: 'Adrian Rossing', eventID: 199, eventName: 'Concert - 10/27/2016', 
-        actionID: 3, action: 'Denied', enteredDate: new Date('2016/09/02'), typeID: 1, type: 'Absent', comments: [{
+        actionID: 3, action: 'Deneyed', enteredDate: new Date('2016/09/02'), typeID: 1, type: 'Absent', comments: [{
           comment: 'The fall concert won\'t work for me. JUST KIDDING! THIS IS A TEST...', 
           userID: 10, commentDate: new Date('2016/09/02')}]}
     ];     
@@ -127,26 +127,3 @@ export class AbsenceService {
   }
 
 }
-
-
-
-    // boardPosts.toPromise()
-      // .then(response => response.json().data as BulletinBoardPost[])
-      // .catch(this.handleError);
-
-  //   return this.http.get(this.boardUrl)
-  //              .toPromise()
-  //              .then(response => response.json().data as BulletinBoardPost[])
-  //              .catch(this.handleError);
-
-
-
-
-  // getBoardPost(id: number) {
-  //   //return this.getBoardPosts().find(post => post.id === id);
-  // }
-
-  // private handleError(error: any) {
-  //   console.error('An error occurred', error);
-  //   return Promise.reject(error.message || error);
-  // }
