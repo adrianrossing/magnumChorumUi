@@ -1,5 +1,5 @@
 import { Injectable }    from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Http, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise'; //this is for toPromise();
 import { Absence } from '../DTOs/absence';
 import { Observable } from 'rxjs/Observable';
@@ -25,7 +25,13 @@ export class AttendanceService {
 
   getAttendance() : any {
     const HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
-    this.http.get('api/users/getUsersForAttendance.php')
+
+
+    let params = new URLSearchParams();
+      params.set('eventID', '1');
+
+    this.http.get('api/users/getUsersForAttendance.php',
+       { search: params })
     //this.http.get('http://intranet.magnumchorum.org/api/users/getUsersForAttendance.php')
     //        .subscribe(res => this.data = res.json());
     // return this.data;
