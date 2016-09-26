@@ -1,6 +1,7 @@
 <?php
 	
-	include '../mysqlLogin.php'; //sets $params
+	include '../mysqlLogin.php'; 
+	include '../getParam.php'; //sets $params
 	// include '../chromePhp.php';
 
 	$eventId = getParam($params, "eventID");

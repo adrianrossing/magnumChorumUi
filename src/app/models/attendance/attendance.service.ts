@@ -30,8 +30,8 @@ export class AttendanceService {
     let params = new URLSearchParams();
       params.set('eventID', '1');
 
-    this.http.get('api/users/getUsersForAttendance.php',
-       { search: params })
+    this.http.get('http://intranet.magnumchorum.org/api/users/getUsersForAttendance.php',
+       { search: params, headers: new Headers({ 'Content-Type': 'application/json' })})
     //this.http.get('http://intranet.magnumchorum.org/api/users/getUsersForAttendance.php')
     //        .subscribe(res => this.data = res.json());
     // return this.data;

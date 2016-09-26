@@ -1,9 +1,10 @@
 <?php
 	
 	include '../mysqlLogin.php';
-
-	$minDateTime = "2016-01-01";
-	$maxDateTime = "2017-01-01";
+	include '../getParam.php'; 
+	
+	$minDateTime = getParam($params, "minDateTime");
+	$maxDateTime = getParam($params, "maxDateTime");
 
 	$sql = "CALL GetEvents('" . $minDateTime . "','" . $maxDateTime . "');";
 	$result = $conn->query($sql);

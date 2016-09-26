@@ -1,11 +1,12 @@
 <?php
 	
 	include '../mysqlLogin.php';
-
-	$userID = 1;
-	$eventID = 1;
-	$attendanceStatusID = 1;
-	$enteredByUserID = 1;
+	include '../getParam.php'; 
+	
+	$userID = getParam($params, "userID");
+	$eventID = getParam($params, "eventID");
+	$attendanceStatusID = getParam($params, "attendanceStatusID");
+	$enteredByUserID = getParam($params, "enteredByUserID");
 
 	$sql = "CALL SaveAttendance(" . $userID . ", " . $eventID . ", " . $attendanceStatusID . "," . $enteredByUserID . ");";
 

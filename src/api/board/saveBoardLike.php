@@ -3,11 +3,10 @@
 	include '../mysqlLogin.php';
 	include '../getParam.php'; 
 	
+	$boardID = getParam($params, "boardID");
 	$userID = getParam($params, "userID");
-	$eventID = getParam($params, "eventID");
-	$absenceTypeID = getParam($params, "absenceTypeID");
 
-	$sql = "CALL SaveAbsence(" . $userID . ", " . $eventID . ", " . $absenceTypeID .");";
+	$sql = "CALL SaveBoardLike" . $boardID . "," . $userID . ");";
 
 	if ($stmt = $conn->prepare($sql)) {
 		$stmt->execute();

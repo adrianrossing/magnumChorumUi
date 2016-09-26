@@ -1,10 +1,11 @@
 <?php
 	
 	include '../mysqlLogin.php';
-
-	$absenceID = 1;
-	$actionID = 1;
-	$enteredByUserID = 1;
+	include '../getParam.php'; 
+	
+	$absenceID = getParam($params, "absenceID");
+	$actionID = getParam($params, "actionID");
+	$enteredByUserID = getParam($params, "enteredByUserID");
 
 	$sql = "CALL SaveAbsenceAction(" . $absenceID . "," . $actionID . "," . $enteredByUserID . ");";
 
