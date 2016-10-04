@@ -6,8 +6,9 @@
 	$userID = getParam($params, "userID");
 	$eventID = getParam($params, "eventID");
 	$absenceTypeID = getParam($params, "absenceTypeID");
+	$lateArrivalTime = getParam($params, "lateArrivalTime");
 
-	$sql = "CALL SaveAbsence(" . $userID . ", " . $eventID . ", " . $absenceTypeID .");";
+	$sql = "CALL SaveAbsence(" . $userID . ", " . $eventID . ", " . $absenceTypeID . ", " . $lateArrivalTime . ");";
 
 	if ($stmt = $conn->prepare($sql)) {
 		$stmt->execute();

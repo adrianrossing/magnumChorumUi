@@ -2,11 +2,28 @@
 	
 	include '../mysqlLogin.php';
 	include '../getParam.php'; 
-	
+
 	$minDateTime = getParam($params, "minDateTime");
 	$maxDateTime = getParam($params, "maxDateTime");
 
-	$sql = "CALL GetEvents('" . $minDateTime . "','" . $maxDateTime . "');";
+	$sql = "CALL GetEvents(";
+	if ($minDateTime != null)
+	{
+		$sql = $sql . "'" . $minDateTime . "',";
+	}
+	else 
+	{
+		$sql = $sql . "null,";
+	}
+	if ($maxDateTime != null)
+	{
+		$sql = $sql . "'" . $maxDateTime . "');";
+	}
+	else 
+	{
+		$sql = $sql . "null);";
+	}
+
 	$result = $conn->query($sql);
 
 	if ($result->num_rows > 0) {

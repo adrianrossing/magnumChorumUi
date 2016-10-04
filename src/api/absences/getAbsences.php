@@ -26,7 +26,7 @@
 	include '../mysqlLogout.php';
 	include '../mysqlLogin.php';
 
-	$final[] = array();
+	$final = array();
 
 	foreach ($rows as $r){
 		$sql2 = "CALL GetAbsenceComments(" . $r["absenceID"] . ");";
@@ -39,7 +39,7 @@
 			}
 			$r["comments"] = $rows2;
 		} 
-		$final = $r;
+		$final[] = $r;
 	}
 
 	echo json_encode($final);
