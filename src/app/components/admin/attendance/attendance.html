@@ -29,7 +29,7 @@
 		<div class="table-row" *ngFor="let user of usersFiltered">
 		 	<div class="col-sm-4">
 				<div *ngIf="user.attendanceStatusID != 1 || user.voided == 1 && user.absenceTypeID != 1">
-					<button type="button" class="btn btn-success" (click)="checkIn(user, user.userID)">{{user.firstName}} {{user.lastName}}</button>
+					<button type="button" class="btn btn-success" (click)="checkIn(user)">{{user.firstName}} {{user.lastName}}</button>
 				</div>
 				<div *ngIf="user.attendanceStatusID == 1 || user.voided == 0 && user.absenceTypeID != 1 ">
 					<button type="button" class="btn btn-info" (click)="checkIn(user)">{{user.firstName}} {{user.lastName}}</button>

@@ -1,0 +1,7 @@
+--Bulletin Board
+	--Tag posts (predefined types) // tabs
+		--gigs/events/social/long term
+	--follow up dates
+	--singer bios/pages
+	--weekly devo/singer highlight
+	
