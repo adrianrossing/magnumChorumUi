@@ -1,10 +1,11 @@
 <?php
 	
 	include '../mysqlLogin.php';
-
-	$absenceID = 1;
-	$enteredByUserID = 1;
-	$comment = "test comment";
+	include '../getParam.php'; 
+	
+	$absenceID = getParam($params, "absenceID");
+	$comment = getParam($params, "comment");
+	$enteredByUserID = getParam($params, "enteredByUserID");
 
 	$sql = "CALL SaveAbsenceComment(" . $absenceID . ",'" . $comment . "'," . $enteredByUserID . ");";
 

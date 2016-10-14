@@ -1,7 +1,6 @@
 /* ===== app/auth.service.ts ===== */
 import { Injectable }      from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
-
 // Avoid name not found warnings
 declare var Auth0Lock: any;
 
@@ -9,7 +8,12 @@ declare var Auth0Lock: any;
 export class Auth {
   // Configure Auth0
   lock = new Auth0Lock('vr3Dc4MexUQrJLMQOzPlL1Q9Ct0cjebf', 'adrianrossing.auth0.com', {});
-
+  // auth0 = new Auth0({
+  //   domain: 'adrianrossing.auth0.com',
+  //   clientID: 'vr3Dc4MexUQrJLMQOzPlL1Q9Ct0cjebf',
+  //   responseType: 'token',
+  //   callbackURL: 'http://localhost:3000',
+  // });
 
   constructor() {
     // Add callback for lock `authenticated` event

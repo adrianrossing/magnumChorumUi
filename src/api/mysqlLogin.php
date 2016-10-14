@@ -10,4 +10,10 @@
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
 	} 
+
+	$params = [];//= array_fill_keys($keys, $values);
+	foreach (explode("&", $_SERVER['argv'][0]) as $p){
+		$queryParam = explode("=", $p);
+		$params[$queryParam[0]] = $queryParam[1];
+	}
 ?>

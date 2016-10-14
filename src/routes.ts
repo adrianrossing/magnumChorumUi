@@ -44,7 +44,7 @@ export const routes: RouterConfig = [
       { path: 'profile', component: Profile },
       { path: 'admin', component: Admin, 
         children: [
-          { path: '', component: Admin},
+          { path: '', component: Attendance },
           { path: 'attendance', component: Attendance },
         ]
     }

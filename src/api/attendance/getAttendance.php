@@ -1,8 +1,9 @@
 <?php
 	
 	include '../mysqlLogin.php';
-
-	$eventID = 1;
+	include '../getParam.php'; 
+	
+	$eventID = getParam($params, "eventID");
 
 	$sql = "CALL GetUsersForAttendance(" . $eventID . ");";
 	$result = $conn->query($sql);

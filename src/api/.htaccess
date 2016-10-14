@@ -1,0 +1,16 @@
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Access-Control-Allow-Origin"
+Header always set Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"
+
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^(.*) /index.html [NC,L]
+
+
+
+RewriteRule ^([^/\.]+)/?$ page.php?page=$1 [L,QSA]

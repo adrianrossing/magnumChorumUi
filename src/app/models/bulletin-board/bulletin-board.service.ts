@@ -1,14 +1,53 @@
 import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise'; //this is for toPromise();
+import { Observable } from 'rxjs/Observable';
 import { BulletinBoardPost } from '../DTOs/bulletin-board-post';
 
 @Injectable()
-export class BulletinBoardService {
-  // private boardUrl = 'app/bulletin-board';  // URL to web api
+export class BulletinBoardService{
+  public data;
+  constructor(private http: Http) { 
+  }
 
-  // constructor(private http: Http) { 
+  // getBoardPosts_2() : any {
+  //   const HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
+  //   let params = new URLSearchParams();
+
+  //   this.http.get('http://intranet.magnumchorum.org/api/board/getBoard.php',
+  //    { search: params, headers: new Headers({ 'Content-Type': 'application/json' })})
+  //     .map((res:Response) => res.json())
+  //     .subscribe(
+  //     res => { this.data = res},
+  //     err => console.error(err),
+  //     () => console.log(this.data)
+  //   );
+
   // }
+ // getBoardPosts_2 (): any 
+ // {
+ //        //let bodyString = JSON.stringify(body); // Stringify payload
+ //        let headers      = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+ //        let options       = new RequestOptions({ headers: headers }); // Create a request option
+
+ //        return this.http.post('http://intranet.magnumchorum.org/api/board/getBoard.php', options) // ...using post request
+ //                         .map((res:Response) => res.json()); // ...and calling .json() on the response to return data
+ //                        // .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+ //    }   
+
+
+
+  getBoardPosts_3() : any
+  {
+    return this.http.get('http://intranet.magnumchorum.org/api/board/getBoard.php')
+      // ...and calling .json() on the response to return data
+       .map((res:Response) => res.json());
+       //...errors if any
+       //.catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+ 
+
+
 
   getBoardPosts() : BulletinBoardPost[]{
   let boardPosts = [
@@ -26,26 +65,3 @@ export class BulletinBoardService {
   }
 
 }
-
-
-
-    // boardPosts.toPromise()
-      // .then(response => response.json().data as BulletinBoardPost[])
-      // .catch(this.handleError);
-
-  //   return this.http.get(this.boardUrl)
-  //              .toPromise()
-  //              .then(response => response.json().data as BulletinBoardPost[])
-  //              .catch(this.handleError);
-
-
-
-
-  // getBoardPost(id: number) {
-  //   //return this.getBoardPosts().find(post => post.id === id);
-  // }
-
-  // private handleError(error: any) {
-  //   console.error('An error occurred', error);
-  //   return Promise.reject(error.message || error);
-  // }

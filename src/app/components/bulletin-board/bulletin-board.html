@@ -15,22 +15,22 @@
 			</form>
 		</div>
 
-	<div class="bubble" *ngFor="let item of boardItems">
+	<div class="bubble" *ngFor="let item of boards">
 
 		<div class="bubble-title">
-			<div class="bubble-title-author">{{item.author}}</div> 
-			<div class="bubble-title-date">Today 12:00pm</div>
-			<div class="bubble-likes" (click)="item.votes = item.votes + 1">
-				{{item.votes}}
+			<div class="bubble-title-author">{{item.firstName}} {{item.lastName}}</div> 
+			<div class="bubble-title-date">{{item.enteredDateTime}}</div>
+			<div class="bubble-likes" (click)="item.likes = item.likes + 1">
+				{{item.likes}}
 				<span class="glyphicon glyphicon-plus cursor-hand" aria-hidden="true"></span>
 			</div>
 		</div>
 		
-		<p class="bubble-text">{{item.comment}}</p>
+		<p class="bubble-text">{{item.comment}}</p><br />
 
-		<div class="bubble-comments" *ngFor="let comment of item.comments">
+		<div class="bubble-comments" *ngFor="let comment of item.children">
 			<div class="bubble-text">
-			<strong>{{comment.author}}:</strong> {{comment.comment}}
+			<strong>{{comment.firstName}} {{comment.lastName}}:</strong> {{comment.comment}}
 			</div>
 		</div>
 		<form>

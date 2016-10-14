@@ -1,2 +1,54 @@
-attendance
-{{attendance}}
+<div class="container" style="margin-top: 10px">
+	<div class="form-group row">
+        <label for="type" class="col-sm-2 col-form-label">Event</label>
+        <div class="col-sm-10">
+          <select name="events" (change)="onEventSelect($event.target.value)" required>
+             <option value="" disabled selected>Please select the event for attendance.</option>
+             <option *ngFor="let event of events" [value]="event.eventID">{{event.friendlyName}}</option>
+
+          </select>    
+        </div>
+  	</div> 
+
+
+	<div *ngIf="usersFiltered">
+		<div class="btn-group">
+			<button type="button" class="btn btn-default" (click)="voicePartSelect(1)">Soprano 1</button>
+			<button type="button" class="btn btn-default" (click)="voicePartSelect(2)">Sporano 2</button>
+			<button type="button" class="btn btn-default" (click)="voicePartSelect(3)">Alto 1</button>
+			<button type="button" class="btn btn-default" (click)="voicePartSelect(4)">Alto 2</button>
+			<button type="button" class="btn btn-default" (click)="voicePartSelect(5)">Tenor 1</button>
+			<button type="button" class="btn btn-default" (click)="voicePartSelect(6)">Tenor 2</button>
+			<button type="button" class="btn btn-default" (click)="voicePartSelect(7)">Baritone</button>
+			<button type="button" class="btn btn-default" (click)="voicePartSelect(8)">Bass 2</button>
+		</div>
+		<br><br>
+
+		Please tap/click your name to let us know you are here.
+
+		<div class="table-row" *ngFor="let user of usersFiltered">
+		 	<div class="col-sm-4">
+				<div *ngIf="user.attendanceStatusID != 1 || user.voided == 1 && user.absenceTypeID != 1">
+					<button type="button" class="btn btn-success" (click)="checkIn(user)">{{user.firstName}} {{user.lastName}}</button>
+				</div>
+				<div *ngIf="user.attendanceStatusID == 1 || user.voided == 0 && user.absenceTypeID != 1 ">
+					<button type="button" class="btn btn-info" (click)="checkIn(user)">{{user.firstName}} {{user.lastName}}</button>
+				</div>
+				<div *ngIf="user.absenceTypeID == 1">
+					<button type="button" class="btn btn-danger" (click)="checkIn(user)">{{user.firstName}} {{user.lastName}}</button>
+				</div>
+		 	</div>
+		 	<div class="col-sm-8">
+		 		<div *ngIf="user.attendanceStatusID != 1 || user.voided == 1 && user.absenceTypeID != 1">
+		 			<div style="color:red" *ngIf="user.absenceTypeID == 2">{{user.firstName}} is arriving late!</div>
+				</div>
+				<div *ngIf="user.attendanceStatusID == 1 || user.voided == 0 && user.absenceTypeID != 1 ">
+					<div style="color:grey">{{user.message}}</div>
+				</div>
+				<div *ngIf="user.absenceTypeID == 1">
+					<div style="color:purple">{{user.firstName}} will not be at today's event.</div>
+				</div>
+	 		</div>
+	 	</div>
+	</div>
+</div>

@@ -1,13 +1,14 @@
 <?php
 	
 	include '../mysqlLogin.php';
-
-	$eventName = "Test";
-	$beginDateTime = "2016-09-24 9:30";
-	$endDateTime = "2016-09-24 3:00";
-	$locationID = 1;
-	$notes = "test notes";
-	$allowAttendance = 1;
+	include '../getParam.php'; 
+	
+	$eventName = getParam($params, "eventName");
+	$beginDateTime = getParam($params, "beginDateTime");
+	$endDateTime = getParam($params, "endDateTime");
+	$locationID = getParam($params, "locationID");
+	$notes = getParam($params, "notes");
+	$allowAttendance = getParam($params, "allowAttendance");
 
 	$sql = "CALL CreateNewEvent('" . $eventName . "','" . $beginDateTime . "','" . $endDateTime . "'," . $locationID . ",'" . $notes . "'," . $allowAttendance . ");";
 

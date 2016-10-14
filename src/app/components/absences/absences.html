@@ -8,13 +8,6 @@
 
   <absence-detail [id]="selectedID"></absence-detail>
 
-
-{{test}}
-{{hi}}
-
-
-
-
 <div>
   <div class="table-row header">
     <div class="flex-name-date">
@@ -40,7 +33,7 @@
   <div class="table-row" *ngFor="let absence of absences">
     <div class="flex-name-date">
       <div class="column wrapper flex-three">{{absence.eventName}}</div>
-      <div class="column wrapper flex-two">{{absence.enteredDate | date}}</div>
+      <div class="column wrapper flex-two">{{absence.startDateTime | date}}</div>
     </div>
     
     <div class="flex-comment">
@@ -48,17 +41,17 @@
     </div>
 
     <div class="flex-names">
-      <div class="column wrapper flex-two">{{absence.userName}}</div>
+      <div class="column wrapper flex-two">{{absence.requestedByFirstName}} {{absence.requestedByLastName}}</div>
       <div class="column wrapper flex-two">......</div>
     </div>
 
     <div class="flex-type-action">
-      <div class="column wrapper flex-one">{{absence.type}}</div>
+      <div class="column wrapper flex-one">{{absence.absenceTypeDescription}}</div>
       <div class="flex-one">
         <div class="label"
-        [class.label-info]="absence.action == 'Requested'"
-        [class.label-success]="absence.action == 'Approved'"
-        [class.label-danger]="absence.action == 'Deneyed'">{{absence.action}}</div>
+        [class.label-info]="absence.requestStatus == 'Submitted'"
+        [class.label-success]="absence.requestStatus == 'Approved'"
+        [class.label-danger]="absence.requestStatus == 'Denied'">{{absence.requestStatus}}</div>
       </div>
     </div>
 
