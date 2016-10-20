@@ -1,6 +1,7 @@
 /* ===== app/auth.service.ts ===== */
 import { Injectable }      from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
+import { Router } from '@angular/router';
 // Avoid name not found warnings
 declare var Auth0Lock: any;
 
@@ -15,10 +16,15 @@ export class Auth {
   //   callbackURL: 'http://localhost:3000',
   // });
 
-  constructor() {
+  constructor(private router: Router) {
+    if (!this.authenticated())
+    {
+      this.lock.show();
+    }
     // Add callback for lock `authenticated` event
     this.lock.on("authenticated", (authResult: any) => {
       localStorage.setItem('id_token', authResult.idToken);
+      this.router.navigate(['dashboard']);
     });
   }
 
@@ -36,7 +42,15 @@ export class Auth {
   public logout() {
     // Remove token from localStorage
     localStorage.removeItem('id_token');
+    this.router.navigate(['login']);
   };
 
-  
+  //  public checkCredentials(){
+  //     var router: Router;
+  //     if (localStorage.getItem("id_token") === null)
+  //     {
+  //       router.navigate(['login']);
+  //     }
+  // };
+
 }
