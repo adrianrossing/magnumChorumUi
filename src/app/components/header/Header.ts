@@ -16,11 +16,15 @@ export class Header {
   public isCollapsed: boolean = false;
   constructor(
     private auth: Auth, 
-    public store: Store<any[]>) {}
+    public store: Store<any[]>) {
+
+    console.log(auth.userProfile);
+  }  
 
   handleSave(text: string) {
     if (text.length !== 0) {
       this.store.dispatch(actions.addTodo(text));      
     }
+
   }
 }

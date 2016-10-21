@@ -7,8 +7,11 @@ declare var Auth0Lock: any;
 
 @Injectable()
 export class Auth {
+  userProfile: any;
   // Configure Auth0
-  lock = new Auth0Lock('vr3Dc4MexUQrJLMQOzPlL1Q9Ct0cjebf', 'adrianrossing.auth0.com', {});
+  lock = new Auth0Lock('vr3Dc4MexUQrJLMQOzPlL1Q9Ct0cjebf', 'adrianrossing.auth0.com', {
+    autoclose: true
+  });
   // auth0 = new Auth0({
   //   domain: 'adrianrossing.auth0.com',
   //   clientID: 'vr3Dc4MexUQrJLMQOzPlL1Q9Ct0cjebf',
@@ -17,21 +20,33 @@ export class Auth {
   // });
 
   constructor(private router: Router) {
-    if (!this.authenticated())
-    {
-      this.lock.show();
-    }
-    // Add callback for lock `authenticated` event
+    this.getProfile();
+    //Add callback for lock `authenticated` event
     this.lock.on("authenticated", (authResult: any) => {
-      localStorage.setItem('id_token', authResult.idToken);
-      this.router.navigate(['dashboard']);
-    });
+        localStorage.setItem('id_token', authResult.idToken);
+        this.getProfile();
+        this.router.navigate(['dashboard']);
+      }, 
+      err => console.error(err)
+    );
   }
 
   public login() {
     // Call the show method to display the widget.
     this.lock.show();
   };
+
+  public getProfile() {
+    if (this.authenticated()) {
+      var token = localStorage.getItem('id_token');
+      this.lock.getProfile(token, (err: any, profile: any) => {
+        this.userProfile = profile;
+        console.log(profile);
+        return profile;
+        // return this.userProfile;
+      });
+    }
+  }
 
   public authenticated() {
     // Check if there's an unexpired JWT
