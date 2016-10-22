@@ -13,7 +13,6 @@ declare var Auth0Lock: any;
 @Injectable()
 export class Auth {
   userProfile: any;
-
   // Configure Auth0
   lock = new Auth0Lock('vr3Dc4MexUQrJLMQOzPlL1Q9Ct0cjebf', 'adrianrossing.auth0.com', {
   additionalSignUpFields: [{
@@ -56,25 +55,21 @@ export class Auth {
     // });
 
     this.lock.on("authenticated", (authResult: any) => {
-      this.lock.getProfile(authResult.idToken, function(error, profile) {
-        if (error) {
-          // Handle error
-          return;
-        }
-
-        profile.user_metadata = profile.user_metadata || {};
+      this.lock.getProfile(authResult.idToken, (error: any, profile: any) => {
+       
         // localStorage.setItem('profile', JSON.stringify(profile));
         // this.userProfile = profile;
 
 
 
         if (profile.user_metadata == null || profile.user_metadata.magnumChorumUserID == null)
-        {
+        { profile.user_metadata = profile.user_metadata || {};
 
             this.http
             .patch('https://adrianrossisng.auth0.com/api/v2/users/' + profile.user_id, 
               { user_metadata: { magnumChorumUserID: 59 } }, 
-              {headers: { authorization: "Bearer " + localStorage.getItem(authResult.idToken) },})
+              {headers: { authorization: "Bearer " + authResult.idToken},
+            })
             .map(response => response.json())
             .subscribe(
               response => {
@@ -82,7 +77,63 @@ export class Auth {
               },
               error => alert(error.json().message)
             );
-              // var options = { method: 'PATCH',
+             
+         }
+         else {
+          console.log(profile);
+          localStorage.setItem('id_token', authResult.idToken);
+          localStorage.setItem('profile', JSON.stringify(profile));
+
+          this.router.navigate(['dashboard']);
+         }
+
+
+        
+      });
+//       this.getProfile().subscribe(x => {
+//         localStorage.setItem('profile', x);
+//         localStorage.setItem('profile2', this.userProfile);
+//         console.log('dumb');
+//       }, 
+//       () => console.log(this.userProfile));
+// console.log('dumb2');
+      // this.checkUserLogin();
+    }, 
+    err => console.error(err)
+    );
+  }
+
+
+  public login() {
+    // Call the show method to display the widget.
+    this.lock.show();
+  };
+
+  public authenticated() {
+    return tokenNotExpired();
+  };
+
+  public logout() {
+    // Remove token from localStorage
+    localStorage.removeItem('id_token');
+    this.router.navigate(['login']);
+  };
+
+  // public checkUserLogin() {
+  //   if (this.userProfile != null)
+  //   {
+  //     if (this.)
+  //   }
+  // }
+
+}
+
+
+
+
+
+/*
+ // var options = { method: 'PATCH',
               // url: 'https://adrianrossing.auth0.com/api/v2/users/{user_id}',
               // headers: { authorization: "Bearer " + localStorage.getItem(authResult.idToken) },
               // body: { user_metadata: { magnumChorumUserID: 59 } },
@@ -124,53 +175,4 @@ export class Auth {
           //   err => console.error(err),
           //   () => console.log()
           //   );
-        }
-        else {
-          console.log(profile);
-        }
-
-
-
-
-
-
-        localStorage.setItem('id_token', authResult.idToken);
-        localStorage.setItem('profile', JSON.stringify(profile));
-      });
-//       this.getProfile().subscribe(x => {
-//         localStorage.setItem('profile', x);
-//         localStorage.setItem('profile2', this.userProfile);
-//         console.log('dumb');
-//       }, 
-//       () => console.log(this.userProfile));
-// console.log('dumb2');
-      // this.checkUserLogin();
-    }, 
-    err => console.error(err)
-    );
-  }
-
-
-  public login() {
-    // Call the show method to display the widget.
-    this.lock.show();
-  };
-
-  public authenticated() {
-    return tokenNotExpired();
-  };
-
-  public logout() {
-    // Remove token from localStorage
-    localStorage.removeItem('id_token');
-    this.router.navigate(['login']);
-  };
-
-  // public checkUserLogin() {
-  //   if (this.userProfile != null)
-  //   {
-  //     if (this.)
-  //   }
-  // }
-
-}
+          */

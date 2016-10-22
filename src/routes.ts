@@ -20,7 +20,8 @@ import {AuthGuard} from './app/auth/auth.guard';
 @Component({
   selector: 'root',
   template: '<router-outlet></router-outlet>',
-  directives: [ROUTER_DIRECTIVES]
+  directives: [ROUTER_DIRECTIVES], 
+  providers: [AuthGuard]
 })
 export class Root {
 }
