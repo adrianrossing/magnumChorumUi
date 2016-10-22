@@ -1,71 +1,17 @@
-<!-- <div>login Auth0 with Auto redirect</div> -->
-
-<div class="navbar-header">
-  <a class="navbar-brand" href="#">Auth0 - Angular 2</a>
-  <button class="btn btn-primary btn-margin" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
-  <button class="btn btn-primary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
+<body class="dashbaord-image" background="/app/assets/bg-body-midwinter.jpg">  
+    <img class="dashboard-logo-image hidden-xs cursor-hand" routerLink="" src="/app/assets/25th-anniversary-log.png"> 
+</body>
+<div class="container">
+    This intranet is provided for the use of magnum chorum singer. <br>
+    <a href="http://www.magnumchorum.org">Please return me to the Magnum Chorum site.</a>   
+        {{test}}
 </div>
-<div id="hiw-login-container"></div>
-<!-- <div class="container">
 
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
-</div>
- -->
- <!-- <div class="container">
-
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
-</div> -->
     <div class="container" >
-    <!--         <div class="title">
-                Welcome
-            </div> -->
-<!--             <div class="form-signin">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input [(ngModel)]="user.email" id="email" 
-                            type="email" class="form-control" 
-                            placeholder="email" Required>
-                        <label for="email" class="sr-only">Email</label>
-                    </div>
-                </div>
- 
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input [(ngModel)]="user.password" id="password" 
-                            type="password" class="form-control"
-                            placeholder="password" Required>
-                        <label for="password" class="sr-only">Password</label>
-                    </div>
-                </div>
- 
-                <span>{{errorMsg}}</span>
-                <button (click)="login()" 
-                    class="btn btn-lg btn-primary btn-block" 
-                    type="submit" name="action">Login</button>
-            </div> -->
-        </div>
+    <div class="navbar-header">
+      <button class="btn btn-primary btn-margin" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
+      <button class="btn btn-primary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
+    </div>
+
+</div>
 
