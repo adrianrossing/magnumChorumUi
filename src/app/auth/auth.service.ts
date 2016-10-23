@@ -12,24 +12,14 @@ declare var Auth0Lock: any;
 
 @Injectable()
 export class Auth {
-  showNewUserForm: boolean = false;
   userProfile: any;
   authResults: any;
   mcSignupCode: string;
-  // Configure Auth0
+  showNewUserForm: boolean = false;
+  showError: boolean = false;
+
   lock = new Auth0Lock('vr3Dc4MexUQrJLMQOzPlL1Q9Ct0cjebf', 'adrianrossing.auth0.com', {
     callback: 'http://localhost:3000/login#'
-   //  additionalSignUpFields: [{
-   //  name: "MagnumChorumAccountID",                              // required
-   //  placeholder: "MC19505!",            // required
-   //  validator: function(value) {                  // optional
-   //    // only accept addresses with more than 10 chars
-   //    return {
-   //      valid: value.length == 8,
-   //       hint: "This is the Temorary Account Identifier provided by Magnum Chorum." // optional
-   //     };
-   //   }
-   // }]
  });
 
   constructor(private router: Router, private http: Http) {
@@ -37,12 +27,11 @@ export class Auth {
 
     this.lock.on("authenticated", (authResult: any) => {
       this.lock.getProfile(authResult.idToken, (error: any, profile: any) => {
+        this.authResults = authResult;
+        this.userProfile = profile;
         console.log(profile);
         if (profile.user_metadata == null || profile.user_metadata.magnumChorumUserID == null)
-        { 
-          console.log('dumb');
-          this.authResults = authResult;
-          this.userProfile = profile;
+        {
           this.showNewUserForm = true;
         } 
         else {
@@ -85,52 +74,40 @@ export class Auth {
   }
 
   public linkAuth0ToMC(authResult: any, profile: any)
-  {
-    console.log('go');
+  {  
+    let params = new URLSearchParams();
+    params.set('key', this.mcSignupCode);
+    this.http.get('http://intranet.magnumchorum.org/api/auth/attemptLogIn.php',
+      { search: params, headers: new Headers({ 'Content-Type': 'application/json' })})
+    .map((res:Response) => res.json())
+    .subscribe(
+      res => { 
+        console.log(res[0].userID);
+
+        if (res[0].userID && res[0].userID > -1)
+        {
         let headers = new Headers()
-
-        headers.append('Authorization', 'Bearer '+ authResult.idToken);//authResult.accessToken);
+        headers.append('Authorization', 'Bearer '+ this.authResults.idToken);//authResult.accessToken);
         headers.append('Content-Type', 'application/json');
-
-          this.http.patch('https://adrianrossing.auth0.com/api/v2/users/' + profile.user_id,//'https://adrianrossisng.auth0.com/api/v2/users/' + profile.user_id, 
-            { "user_metadata": { "magnumChorumUserID": 97 } },
-            { headers: headers })
+        this.http.patch('https://adrianrossing.auth0.com/api/v2/users/' + this.userProfile.user_id,//'https://adrianrossisng.auth0.com/api/v2/users/' + profile.user_id, 
+          { "user_metadata": { "magnumChorumUserID": res[0].userID} },
+          { headers: headers })
           .map(response => response.json())
           .subscribe(
             response => {
-              console.log(response);
-
-
-              // let params = new URLSearchParams();
-          // params.set('firstName', profile.given_name);
-          // params.set('lastName', profile.family_name);
-          // params.set('email', profile.email);
-          // params.set('auth0UserID', profile.user_id);
-          // params.set('enteredByUserID', profile.MagnumChorumAccountID);
-
-          // this.http.get('http://intranet.magnumchorum.org/api/auth/linkA0MagnumUser.php',
-          //   { search: params, headers: new Headers({ 'Content-Type': 'application/json' })})
-          // .map((res:Response) => res.json())
-          // .subscribe(
-          //   res => { 
-
-
-        // },
-        // err => console.error(err),
-        // () => console.log()
-        // );
-
-
-              // localStorage.setItem('id_token', authResult.idToken);
-              // localStorage.setItem('profile', JSON.stringify(profile));
-
-              // this.router.navigate(['dashboard']);
-
-
-
-            },
-            error => alert(error.json().message)
-            );
-
+              localStorage.setItem('id_token', this.authResults.idToken);
+              localStorage.setItem('profile', JSON.stringify(profile));
+              this.router.navigate(['dashboard']);
+          },
+          error => alert(error.json().message)
+          );
+        }
+        else{
+          this.showError;
+        }
+      },
+      err => console.error(err),
+      () => console.log()
+      );
   }
 }

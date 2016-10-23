@@ -3,10 +3,9 @@
 	include '../mysqlLogin.php';
 	include '../getParam.php';  
 	
-	$username = getParam($params, "username");
-	$password = getParam($params, "password");
+	$key = getParam($params, "key");
 
-	$sql = "CALL AttempLogIn('" . $username . "','" . $password . "');";
+	$sql = "CALL AttempLogIn('" . $key . "');";
 	$result = $conn->query($sql);
 
 	if ($result->num_rows > 0) {
