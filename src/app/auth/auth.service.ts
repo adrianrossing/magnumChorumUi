@@ -1,26 +1,51 @@
 /* ===== app/auth.service.ts ===== */
 import { Injectable }      from '@angular/core';
-import { tokenNotExpired } from 'angular2-jwt';
+import { tokenNotExpired, AuthHttp, AuthConfig } from 'angular2-jwt';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
+
+import { Headers, Http, Response, URLSearchParams } from '@angular/http';
+
 // Avoid name not found warnings
 declare var Auth0Lock: any;
 
 @Injectable()
 export class Auth {
-  // Configure Auth0
-  lock = new Auth0Lock('vr3Dc4MexUQrJLMQOzPlL1Q9Ct0cjebf', 'adrianrossing.auth0.com', {});
-  // auth0 = new Auth0({
-  //   domain: 'adrianrossing.auth0.com',
-  //   clientID: 'vr3Dc4MexUQrJLMQOzPlL1Q9Ct0cjebf',
-  //   responseType: 'token',
-  //   callbackURL: 'http://localhost:3000',
-  // });
+  userProfile: any;
+  authResults: any;
+  mcSignupCode: string;
+  showNewUserForm: boolean = false;
+  showError: boolean = false;
 
-  constructor() {
-    // Add callback for lock `authenticated` event
+  lock = new Auth0Lock('vr3Dc4MexUQrJLMQOzPlL1Q9Ct0cjebf', 'adrianrossing.auth0.com', {
+    callback: 'http://localhost:3000/login#'
+ });
+
+  constructor(private router: Router, private http: Http) {
+
+
     this.lock.on("authenticated", (authResult: any) => {
-      localStorage.setItem('id_token', authResult.idToken);
-    });
+      this.lock.getProfile(authResult.idToken, (error: any, profile: any) => {
+        this.authResults = authResult;
+        this.userProfile = profile;
+        console.log(profile);
+        if (profile.user_metadata == null || profile.user_metadata.magnumChorumUserID == null)
+        {
+          this.showNewUserForm = true;
+        } 
+        else {
+          localStorage.setItem('id_token', authResult.idToken);
+          localStorage.setItem('profile', JSON.stringify(profile));
+
+          this.router.navigate(['dashboard']);
+        }
+      });
+    }, 
+    err => console.error(err)
+    );
   }
+
 
   public login() {
     // Call the show method to display the widget.
@@ -28,15 +53,61 @@ export class Auth {
   };
 
   public authenticated() {
-    // Check if there's an unexpired JWT
-    // This searches for an item in localStorage with key == 'id_token'
     return tokenNotExpired();
   };
 
   public logout() {
     // Remove token from localStorage
     localStorage.removeItem('id_token');
+    localStorage.removeItem('profile');
+    this.router.navigate(['login']);
   };
 
-  
+  public validSignUpCode()
+  {
+    if(this.mcSignupCode != null) {
+      return ((this.mcSignupCode as string).length == 8);
+    }
+    else {
+      return false;
+    }
+  }
+
+  public linkAuth0ToMC(authResult: any, profile: any)
+  {  
+    let params = new URLSearchParams();
+    params.set('key', this.mcSignupCode);
+    this.http.get('http://intranet.magnumchorum.org/api/auth/attemptLogIn.php',
+      { search: params, headers: new Headers({ 'Content-Type': 'application/json' })})
+    .map((res:Response) => res.json())
+    .subscribe(
+      res => { 
+        console.log(res[0].userID);
+
+        if (res[0].userID && res[0].userID > -1)
+        {
+        let headers = new Headers()
+        headers.append('Authorization', 'Bearer '+ this.authResults.idToken);//authResult.accessToken);
+        headers.append('Content-Type', 'application/json');
+        this.http.patch('https://adrianrossing.auth0.com/api/v2/users/' + this.userProfile.user_id,//'https://adrianrossisng.auth0.com/api/v2/users/' + profile.user_id, 
+          { "user_metadata": { "magnumChorumUserID": res[0].userID} },
+          { headers: headers })
+          .map(response => response.json())
+          .subscribe(
+            response => {
+              localStorage.setItem('id_token', this.authResults.idToken);
+              localStorage.setItem('profile', JSON.stringify(profile));
+              this.router.navigate(['dashboard']);
+          },
+          error => alert(error.json().message)
+          );
+        }
+        else{
+          this.showError;
+        }
+      },
+      err => console.error(err),
+      () => console.log()
+      );
+  }
 }

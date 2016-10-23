@@ -15,11 +15,13 @@ import {Information} from './app/components/information/information';
 import {Profile} from './app/components/profile/profile';
 import {Admin} from './app/components/admin/admin';
 import {Attendance} from './app/components/admin/attendance/attendance';
+import {AuthGuard} from './app/auth/auth.guard';
 
 @Component({
   selector: 'root',
   template: '<router-outlet></router-outlet>',
   directives: [ROUTER_DIRECTIVES]
+
 })
 export class Root {
 }
@@ -32,20 +34,20 @@ export const routes: RouterConfig = [
   { path: '', redirectTo: 'dashboard', terminal: true },
   { path: 'landing', component: Landing },
   { path: 'login', component: Login },
-  { path: '', component: App,
+  { path: '', component: App, canActivate: [AuthGuard],
     children: [
-      { path: '', component: App},
-      { path: 'dashboard', component: Dashboard },
-      { path: 'bulletin-board', component: BulletinBoard },
-      { path: 'absences', component: Absences },
-      { path: 'absences/new', component: NewAbsence },
-      { path: 'absences/:id', component: AbsenceDetail }, //not using now.. just doing in the absences partial. 
-      { path: 'information', component: Information },
-      { path: 'profile', component: Profile },
-      { path: 'admin', component: Admin, 
+      { path: '', component: App, canActivate: [AuthGuard]},
+      { path: 'dashboard', component: Dashboard, canActivate: [AuthGuard] },
+      { path: 'bulletin-board', component: BulletinBoard, canActivate: [AuthGuard] },
+      { path: 'absences', component: Absences, canActivate: [AuthGuard] },
+      { path: 'absences/new', component: NewAbsence, canActivate: [AuthGuard] },
+      { path: 'absences/:id', component: AbsenceDetail, canActivate: [AuthGuard] }, //not using now.. just doing in the absences partial. 
+      { path: 'information', component: Information, canActivate: [AuthGuard] },
+      { path: 'profile', component: Profile, canActivate: [AuthGuard] },
+      { path: 'admin', component: Admin, canActivate: [AuthGuard], 
         children: [
-          { path: '', component: Attendance },
-          { path: 'attendance', component: Attendance },
+          { path: '', component: Attendance, canActivate: [AuthGuard] },
+          { path: 'attendance', component: Attendance, canActivate: [AuthGuard] },
         ]
     }
     ]

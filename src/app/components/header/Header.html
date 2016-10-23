@@ -23,16 +23,16 @@
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
-
+<!-- 
         <li><a routerLink="/profile">
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
             User Name
             <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
             <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
-        </a></li>
+        </a></li> -->
         <!--         <li (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</li>
         <li (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</li>  -->
-        <li><a routerLink="/login">Log In/Log Out</a></li> 
+        <li><a (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</a></li> 
 
     </ul>
     </div>
