@@ -18,7 +18,7 @@ export class Header {
     private auth: Auth, 
     public store: Store<any[]>) {
 
-    console.log(auth.userProfile);
+    // console.log(auth.userProfile);
   }  
 
   handleSave(text: string) {

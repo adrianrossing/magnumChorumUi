@@ -2,13 +2,12 @@ import {Component} from '@angular/core';
 import {LoginService, User} from './login.service';
 import {Auth} from '../../auth/auth.service';
 
-import {AuthHttp} from 'angular2-jwt';
 
 @Component({
   selector: 'login',
   template: require('./login.html'), 
     styles: [require('./login.css').toString()], 
-    providers: [LoginService, Auth, AuthHttp]
+    providers: [LoginService, Auth]
 })
 export class Login {
  

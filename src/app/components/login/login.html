@@ -1,17 +1,50 @@
 <body class="dashbaord-image" background="/app/assets/bg-body-midwinter.jpg">  
-    <img class="dashboard-logo-image hidden-xs cursor-hand" routerLink="" src="/app/assets/25th-anniversary-log.png"> 
+	<img class="dashboard-logo-image hidden-xs cursor-hand" routerLink="" src="/app/assets/25th-anniversary-log.png"> 
 </body>
 <div class="container">
-    This intranet is provided for the use of magnum chorum singer. <br>
-    <a href="http://www.magnumchorum.org">Please return me to the Magnum Chorum site.</a>   
-        {{test}}
-</div>
+	<div class="row" style="float: none; margin: 0 auto; text-align: center;">
+		<br>
+		<div class="span6" *ngIf="!auth.showNewUserForm" >
+			This site is provided for the sole use of Magnum Chorum singers. <br>
+			<div style="font-size: larger;">
+				<a href="http://www.magnumchorum.org">Please return me to the Magnum Chorum site.</a>   
+			</div>
+			<br><br>
+			<div>
+				<button class="btn btn-primary btn-margin" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
+				<button class="btn btn-primary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
+			</div>
 
-    <div class="container" >
-    <div class="navbar-header">
-      <button class="btn btn-primary btn-margin" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
-      <button class="btn btn-primary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
-    </div>
+		</div>
 
-</div>
+		<div *ngIf="auth.showNewUserForm">
+			<div>
+				It looks like this is the first time you've logged in using those credentials. <br>
+				Please provide the Magnum Chorum Sign-Up Code to complete your registration. <br><br>
+				<form #f="ngForm">
+
+					<div class="col-sm-3"></div>
+					<div class="form-group row col-sm-6">
+						<div  ngControlGroup="signup" #name="ngForm">
+							<input type="text" class="form-control" id="code" rows="5" placeholder="Enter the code provided to you by Magnum Chorum." required ngControl="code" [(ngModel)]="auth.mcSignupCode" #code="ngForm">
+						</div>
+						<br>
+						<div class="form-group row">
+							<div class="">
+								<button type="submit" class="btn btn-primary" [disabled]="!auth.validSignUpCode()" (click)="auth.linkAuth0ToMC()">Submit</button>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-3"></div>
+
+				</form>
+			</div>
+
+
+
+		</div>
+
+	</div>
 
