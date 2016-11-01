@@ -19,7 +19,6 @@ export class Auth {
   showError: boolean = false;
 
   lock = new Auth0Lock('vr3Dc4MexUQrJLMQOzPlL1Q9Ct0cjebf', 'adrianrossing.auth0.com', {
-    callback: 'http://localhost:3000/login#'
  });
 
   constructor(private router: Router, private http: Http) {
@@ -82,7 +81,7 @@ export class Auth {
     .map((res:Response) => res.json())
     .subscribe(
       res => { 
-        console.log(res[0].userID);
+        // console.log(res[0].userID);
 
         if (res[0].userID && res[0].userID > -1)
         {
@@ -106,8 +105,8 @@ export class Auth {
           this.showError;
         }
       },
-      err => console.error(err),
-      () => console.log()
+      err => console.error(err)
+      // () => console.log()
       );
   }
 }

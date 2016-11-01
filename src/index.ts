@@ -9,7 +9,10 @@ import {provideStore, combineReducers} from '@ngrx/store';
 import {todos, visibility, initialTodo, initialVisibility} from './app/reducers/todos';
 
 import {AuthGuard} from './app/auth/auth.guard';
-import './index.css';
+
+import {Auth} from './app/auth/auth.service';
+
+import './index.css'; 
 // import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {provideRouter} from '@angular/router';
@@ -27,5 +30,5 @@ bootstrap(Root, [
   HTTP_PROVIDERS,
   provideRouter(routes),
   provideStore(combineReducers({todos, visibility}), {todos: [initialTodo], visibility: initialVisibility}), 
-  AuthGuard
+  AuthGuard, Auth
 ]);

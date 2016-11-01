@@ -9,7 +9,7 @@ import {Auth} from '../../auth/auth.service';
   selector: 'Header',
   template: require('./Header.html'),
   styles: [require('./header.css').toString()],
-  directives: [ROUTER_DIRECTIVES],//, CollapseDirective], 
+  directives: [ROUTER_DIRECTIVES], //CollapseDirective], 
   providers:[Auth]
 })
 export class Header {

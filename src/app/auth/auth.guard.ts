@@ -35,16 +35,17 @@ export class AuthGuard implements CanActivate {
 // @Injectable()
 // export class AuthGuard implements CanActivate {
 //  
-    constructor(private router: Router) { }
+    constructor(private auth: Auth, private router: Router) {}
  
     canActivate() {
-        if (localStorage.getItem('id_token')) {
+        if (localStorage.getItem('id_token') && this.auth.authenticated()) {
             // logged in so return true
+
             return true;
         }
  
         // not logged in so redirect to login page
-        this.router.navigate(['login']);
+        this.auth.logout();
         return false;
     }
 }
